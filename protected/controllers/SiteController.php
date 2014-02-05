@@ -98,7 +98,23 @@ class SiteController extends Controller {
 
     function actionInfo() {
         $info = 'asd';
-         $this->render('info',array('info' => $info));
+        $this->render('info', array('info' => $info));
+    }
+
+    function actionVotings() {
+        $command = Yii::app()->db->createCommand();
+        $command->select('*')->from('votings')->where('active=1');
+        $row = $command->queryAll();
+
+        $this->render('votings', array('row' => $row));
+    }
+
+    function actionVoting($voting = null, $name = null) {        
+        $command = Yii::app()->db->createCommand();
+        $command->select('*')->from('votes_variants')->where("voting_id=$voting");
+        $row = $command->queryAll();
+        
+        $this->render('voting', array('row' => $row, 'title' => $name));
     }
 
 }

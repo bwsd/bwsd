@@ -4,7 +4,7 @@
 // Yii::setPathOfAlias('local','path/to/local-folder');
 // This is the main Web application configuration. Any writable
 // CWebApplication properties can be configured here.
-return array(    
+return array(
     'basePath' => dirname(__FILE__) . DIRECTORY_SEPARATOR . '..',
     'name' => 'My Web Application',
     // preloading 'log' component
@@ -26,13 +26,13 @@ return array(
      */
     ),
     // application components
-    'components' => array(        
+    'components' => array(
         'urlManager' => array(
             'urlFormat' => 'path',
             'showScriptName' => false,
             'caseSensitive' => false,
             'rules' => array(
-              '/<action:\w+>' => 'site/<action>',
+                '/<action:\w+>' => 'site/<action>',
             ),
         ), 'user' => array(
 // enable cookie-based authentication
@@ -50,7 +50,12 @@ return array(
           ),
          */
         'db' => array(
-            'connectionString' => 'sqlite:' . dirname(__FILE__) . '/../data/testdrive.db',
+            'class' => 'CDbConnection',
+            'connectionString' => 'mysql:host=localhost;dbname=yii',
+            'username' => 'root',
+            'password' => '',
+            'charset' => 'utf8',
+            'emulatePrepare' => true, // необходимо для некоторых версий инсталляций MySQL
         ),
         // uncomment the following to use a MySQL database
         /*
